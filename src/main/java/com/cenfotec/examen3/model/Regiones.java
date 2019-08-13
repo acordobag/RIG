@@ -15,13 +15,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Pais {
-	
+public class Regiones {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private List<Provincia> divisionPolitica;
-	private List<Regiones> divisionBiologica;
-	private RIG rig;
+	private List<Provincia> provincias;
+	
 }
