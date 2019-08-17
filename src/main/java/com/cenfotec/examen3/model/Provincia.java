@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,11 +28,13 @@ public class Provincia {
 	private Long id;
 	private String nombre;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "pais_id")
 	private Pais pais;
 	
-	@ManyToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "region_id")
 	private Region region;
 }

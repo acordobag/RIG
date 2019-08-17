@@ -1,6 +1,5 @@
 package com.cenfotec.examen3.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Builder
 public class Pais {
 	
 	@Id
@@ -31,10 +30,10 @@ public class Pais {
 	private double superficieTerrestre;
 	private double superficieMaritima;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "pais", cascade = CascadeType.ALL)
-	@Builder.Default
-	private Set<Provincia> divisionPolitica = new HashSet();
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "pais", cascade = CascadeType.ALL)
-	@Builder.Default
-	private Set<Region> divisionBiologica = new HashSet();
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pais", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Provincia> divisionPolitica;
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pais", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Region> divisionBiologica;
 }
