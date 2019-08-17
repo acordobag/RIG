@@ -12,7 +12,6 @@ import com.cenfotec.examen3.repository.PaisRepository;
 import com.cenfotec.examen3.repository.AnimalRepository;
 
 public class AnimalController {
-	@SuppressWarnings("unused")
 	private PaisRepository paisRepo;
 	private AnimalRepository repo;
 	
@@ -21,15 +20,15 @@ public class AnimalController {
 		this.repo = r;
 	}
 
-	@GetMapping(path = { "/{idPais}" })
-	public ResponseEntity<List<Animal>> findAll( @PathVariable long idPais) {	
-		return repo.findByPais(idPais).map(record -> ResponseEntity.ok().body(record))
+	@GetMapping(path = { "/{idRegion}" })
+	public ResponseEntity<List<Animal>> findAll( @PathVariable long idRegion) {	
+		return repo.findByPais(idRegion).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<Animal>> findAll(@RequestParam String nombre) {
-		return repo.findByNombreContaining(nombre).map(record -> ResponseEntity.ok().body(record))
+		return repo.findBynombresPopularesContaining(nombre).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
 }

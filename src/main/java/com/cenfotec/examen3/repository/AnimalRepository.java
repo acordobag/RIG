@@ -13,5 +13,5 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 	@Query("select a FROM Animal a where a.region.pais.id = :id")
 	Optional<List<Animal>> findByPais(@Param("id")Long paisId);
 	
-	Optional<List<Animal>> findByNombreContaining(String nombre);
+	Optional<List<Animal>> findBynombresPopularesContaining(String nombre);
 }
