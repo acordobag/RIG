@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "296e75af-9498-4f0d-b93e-5bb9ef39ffb3",
+		"name": "RIG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea Pais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"continente\": \"America\",\n    \"nombre\": \"Panama\",\n    \"superficieTerrestre\": \"1520515\",\n    \"superficieMaritima\": \"4544554\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/pais",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"pais"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c7d62f60-89dd-45a0-88ea-a42f356d5130",
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user\",\n    \"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provincia aprox",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n        {\n            \"nombre\": \"San Jose\"\n        },\n        {\n            \"nombre\": \"Cartago\"\n        },\n        {\n            \"nombre\": \"Heredia\"\n        },\n        {\n            \"nombre\": \"Alajuela\"\n        },\n        {\n            \"nombre\": \"Limon\"\n        },\n        {\n            \"nombre\": \"Guanacaste\"\n        },\n        {\n            \"nombre\": \"Puntarenas\"\n        }\n    ]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/provincia?nombre=car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"provincia"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "car"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea div Poli",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n        {\n            \"nombre\": \"San Jose\"\n        },\n        {\n            \"nombre\": \"Cartago\"\n        },\n        {\n            \"nombre\": \"Heredia\"\n        },\n        {\n            \"nombre\": \"Alajuela\"\n        },\n        {\n            \"nombre\": \"Limon\"\n        },\n        {\n            \"nombre\": \"Guanacaste\"\n        },\n        {\n            \"nombre\": \"Puntarenas\"\n        }\n    ]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/provincia/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"provincia",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crea div Bio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"nombre\": \"Central\",\n        \"provincias\": [\n            {\n            \t\"id\":3,\n                \"nombre\": \"San Jose\"\n            },\n            {\n            \t\"id\":1,\n                \"nombre\": \"Cartago\"\n            },\n            {\n            \t\"id\":2,\n                \"nombre\": \"Heredia\"\n            },\n            {\n            \t\"id\":6,\n                \"nombre\": \"Alajuela\"\n            }\n        ]\n    },\n    {\n        \"nombre\": \"Chorotega\"\n    },\n    {\n        \"nombre\": \"Pacifico Central\"\n    },\n    {\n        \"nombre\": \"Brunca\"\n    },\n    {\n        \"nombre\": \"Huetar Atlantico\"\n    },\n    {\n        \"nombre\": \"Huetar Norte\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/region/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"region",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Region aprox",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n        {\n            \"nombre\": \"San Jose\"\n        },\n        {\n            \"nombre\": \"Cartago\"\n        },\n        {\n            \"nombre\": \"Heredia\"\n        },\n        {\n            \"nombre\": \"Alajuela\"\n        },\n        {\n            \"nombre\": \"Limon\"\n        },\n        {\n            \"nombre\": \"Guanacaste\"\n        },\n        {\n            \"nombre\": \"Puntarenas\"\n        }\n    ]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/region?nombre=u",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"region"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "u"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Regiones por pais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n        {\n            \"nombre\": \"San Jose\"\n        },\n        {\n            \"nombre\": \"Cartago\"\n        },\n        {\n            \"nombre\": \"Heredia\"\n        },\n        {\n            \"nombre\": \"Alajuela\"\n        },\n        {\n            \"nombre\": \"Limon\"\n        },\n        {\n            \"nombre\": \"Guanacaste\"\n        },\n        {\n            \"nombre\": \"Puntarenas\"\n        }\n    ]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/region/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"region",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Provincias por pais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n        {\n            \"nombre\": \"San Jose\"\n        },\n        {\n            \"nombre\": \"Cartago\"\n        },\n        {\n            \"nombre\": \"Heredia\"\n        },\n        {\n            \"nombre\": \"Alajuela\"\n        },\n        {\n            \"nombre\": \"Limon\"\n        },\n        {\n            \"nombre\": \"Guanacaste\"\n        },\n        {\n            \"nombre\": \"Puntarenas\"\n        }\n    ]"
+				},
+				"url": {
+					"raw": "http://localhost:8082/provincia/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"provincia",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
